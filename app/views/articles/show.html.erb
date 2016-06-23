@@ -1,14 +1,28 @@
 <h1> <%= @article.title %> </h1>
-<p>
-  Tags:
-  <% @article.tags.each do |tag| %>
-    <%= link_to tag.name, tag_path(tag) %>
-  <% end %>
-</p>
+
 </br>
+
 <p><%= image_tag @article.image.url if @article.image.exists? %></p>
 <p> <%= @article.body %> </p>
+
 </br>
+
+<p> 
+	(<%= @article.views %> 
+	 <%= @article.views == 1 ? "view" : "views"%> ) 
+</p>
+
+<% if @article.tags != []	%>
+	<p>
+	  Tags:
+	  <% @article.tags.each do |tag| %>
+	    <%= link_to tag.name, tag_path(tag) %>
+	  <% end %>
+	</p>
+<% end %>
+
+<br>
+
 <%= link_to "<<Back to Articles List", articles_path %>
 <% if logged_in? %>
 	<%= link_to "Delete", article_path(@article), 

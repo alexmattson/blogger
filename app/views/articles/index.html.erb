@@ -1,7 +1,18 @@
 <h1>All Articles</h1>
-<p> <%= link_to "Browse By Tags", tags_path %> </p>
-</br>
 
+<hr>
+<h2 id="months"> Top Three Articles</h2>
+  <ul>
+  <% (0..2).each do |i|%>
+    <% article = @popular[i] %>
+    <li><%= link_to "#{article.title}", article_path(article) %></li>
+  <% end %>
+  </ul>
+</div>
+<hr>
+
+
+<h2 id="months"> All Articles </h2>
 <ul id="articles">
   <% @articles.each do |article| %>
     <li>
@@ -9,5 +20,21 @@
     </li>
   <% end %>
 </ul>
+
+</br>
+</br>
+
+<hr>
+<h2 id="months"> Sorted By Month </h2>
+<hr>
+<% @article_months.sort.each do |pub, articles| %>
+  <h3><%= pub.strftime('%B') %></h3>
+  <ul>
+  <% for article in articles %>
+    <li><%= link_to "#{article.title}", article_path(article) %></li>
+  <% end %>
+  </ul>
+<% end %>
+
 
 <%= link_to "Create a new article", new_article_path, class: 'new_article'  %>

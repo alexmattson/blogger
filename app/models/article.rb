@@ -21,5 +21,9 @@ class Article < ActiveRecord::Base
 		self.tags = new_or_found_tags
 	end
 
+	def display_views
+		"(#{@article.views} views)"
+	end
+
 end
 

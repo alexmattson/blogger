@@ -4,10 +4,15 @@ class ArticlesController < ApplicationController
 
 	def index
 		@articles = Article.all
+		@article_months = @articles.group_by{|r| r.created_at.beginning_of_month}
+
+		@popular = @articles.sort{|a| a["views"]}.reverse
 	end
 
 	def show
 		@article = Article.find(params[:id])
+		add_view
+
 		@comment = Comment.new
 		@comment.article_id = @article.id
 	end
