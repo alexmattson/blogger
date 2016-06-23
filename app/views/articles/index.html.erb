@@ -1,7 +1,7 @@
 <h1>All Articles</h1>
 
 <hr>
-<h2 id="months"> Top Three Articles</h2>
+<h2> Top Three Articles</h2>
   <ul>
   <% (0..2).each do |i|%>
     <% article = @popular[i] %>
@@ -26,7 +26,6 @@
 
 <hr>
 <h2 id="months"> Sorted By Month </h2>
-<hr>
 <% @article_months.sort.each do |pub, articles| %>
   <h3><%= pub.strftime('%B') %></h3>
   <ul>
